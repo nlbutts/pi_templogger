@@ -20,6 +20,7 @@ def writeMeasurements(temp, file):
         opts = 'a'
     else:
         opts = 'w'
+        f.write('epoch,datetime,min,mean,max,samples')
 
     meanTemp = np.mean(temp)
     maxTemp  = np.max(temp)
@@ -62,4 +63,5 @@ while True:
         oldMin = ltime.tm_hour
         print('Saving measurement')
         writeMeasurements(temp, 'temp_measurements.csv')
+        temp = []
 
