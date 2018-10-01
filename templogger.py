@@ -60,7 +60,7 @@ while True:
 
     ltime = time.localtime()
     if ltime.tm_hour != old:
-        oldMin = ltime.tm_hour
+        old = ltime.tm_hour
         print('Saving measurement')
         writeMeasurements(temp, 'temp_measurements.csv')
         temp = []
