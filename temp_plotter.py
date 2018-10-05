@@ -1,8 +1,11 @@
+import matplotlib as mpl
+mpl.use('Agg')
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
-
+import argparse
 
 def plotTemperature(secondsToPlot, data):
     e=np.array(data['epoch'])
@@ -25,7 +28,13 @@ def plotTemperature(secondsToPlot, data):
     plt.savefig('lastweek.png', dpi=600)
     #plt.show()
 
-x = pd.read_csv('temp_measurements.csv')
+parser = argparse.ArgumentParser(description='Temperature Plotter.')
+parser.add_argument('-f-', '--file', type=str, help='File to plot')
+
+args = parser.parse_args()
+print(args.file)
+
+x = pd.read_csv(args.file)
 
 # plot the last week of data
 one_week = 7 * 24 * 3600

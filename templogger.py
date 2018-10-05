@@ -16,17 +16,21 @@ def c_to_f(c):
 
 def writeMeasurements(temp, file):
     opts = []
+    firstLine = False
     if os.path.exists(file):
         opts = 'a'
     else:
         opts = 'w'
-        f.write('epoch,datetime,min,mean,max,samples')
+        firstLine = True
 
     meanTemp = np.mean(temp)
     maxTemp  = np.max(temp)
     minTemp  = np.min(temp)
 
     f = open(file, opts)
+    if firstLine:
+        f.write('epoch,datetime,min,mean,max,samples')
+
     t = time.time()
     l = time.localtime()
     strTime = time.asctime()
